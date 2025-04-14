@@ -514,6 +514,24 @@
 .end
 
 .orig x0200
+    OS_START:
+        ; set system stack pointer
+        LD R6, OS_SP
+        ; push synthesized PSR onto system stack
+        LD R0, USER_PSR
+        ADD R6, R6, #-1
+        STR R0, R6, #0
+        ; push synthesized (x3000) PSR onto system stack
+        LD R0, USER_PC
+        ADD R6, R6, #-1
+        STR R0, R6, #0
+        ; enter user mode
+        RTI
+
+        OS_SP       .fill x3000
+        USER_PSR    .fill x8002
+        USER_PC     .fill x3000
+
     E_BAD_TRAP:
         LEA R0, S_BAD_TRAP
         PUTS

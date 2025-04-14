@@ -647,9 +647,9 @@ impl Simulator {
         let mut sim = Self {
             mem: MemArray::new(&mut filler),
             reg_file: RegFile::new(&mut filler),
-            pc: 0x3000,
+            pc: 0x0200,
             psr: PSR::new(),
-            saved_sp: Word::new_init(0x3000),
+            saved_sp: Word::new_init(0xF000),
             frame_stack: FrameStack::new(flags.debug_frames),
             alloca: Box::new([]),
             instructions_run: 0,
@@ -1362,9 +1362,9 @@ impl Default for Simulator {
 pub struct PSR(u16);
 
 impl PSR {
-    /// Creates a PSR with a default value (user mode, `z` condition code).
+    /// Creates a PSR with a default value (privileged mode, `z` condition code).
     pub fn new() -> Self {
-        PSR(0x8002)
+        PSR(0x0002)
     }
 
     /// Checks whether the simulator is in privileged mode.
