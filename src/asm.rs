@@ -163,7 +163,7 @@ impl crate::err::Error for AsmErr {
         Some(self.span.clone())
     }
 
-    fn help(&self) -> Option<std::borrow::Cow<str>> {
+    fn help(&self) -> Option<std::borrow::Cow<'_, str>> {
         match &self.kind {
             AsmErrKind::UndetAddrLabel    => Some("try moving this label inside of an .orig/.end block".into()),
             AsmErrKind::UndetAddrStmt     => Some("try moving this statement inside of an .orig/.end block".into()),
@@ -207,7 +207,7 @@ const IO_START: u16 = 0xFE00;
 /// This data structure holds several invariants:
 /// - Line numbers should never overlap.
 /// - In a given block, the addresses should be in ascending order 
-///     (this has to occur in a well-formed program because regions constitute contiguous, non-overlapping parts of memory).
+///   (this has to occur in a well-formed program because regions constitute contiguous, non-overlapping parts of memory).
 /// 
 /// If these invariants are not held, invalid behavior can occur.
 #[derive(PartialEq, Eq, Clone)]
@@ -1069,8 +1069,7 @@ impl ObjectFile {
             }
             fn shift(&mut self, n: u16) {
                 self.words.extend({
-                    std::iter::repeat(None)
-                        .take(usize::from(n))
+                    std::iter::repeat_n(None, usize::from(n))
                 });
             }
             /// Writes the assembly for the given directive into the provided object block.

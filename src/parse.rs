@@ -127,7 +127,7 @@ impl crate::err::Error for ParseErr {
         Some(crate::err::ErrSpan::from(self.span.clone()))
     }
         
-    fn help(&self) -> Option<Cow<str>> {
+    fn help(&self) -> Option<Cow<'_, str>> {
         match &self.kind {
             ParseErrKind::OffsetNew(e) => e.help(),
             ParseErrKind::Lex(e) => e.help(),

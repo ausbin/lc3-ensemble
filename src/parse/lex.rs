@@ -171,7 +171,7 @@ impl std::fmt::Display for LexErr {
 }
 impl std::error::Error for LexErr {}
 impl crate::err::Error for LexErr {
-    fn help(&self) -> Option<std::borrow::Cow<str>> {
+    fn help(&self) -> Option<std::borrow::Cow<'_, str>> {
         match self {
             LexErr::DoesNotFitU16    => Some(format!("the range for a 16-bit unsigned integer is [{}, {}]", u16::MIN, u16::MAX).into()),
             LexErr::DoesNotFitI16    => Some(format!("the range for a 16-bit signed integer is [{}, {}]", i16::MIN, i16::MAX).into()),

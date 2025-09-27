@@ -33,7 +33,7 @@ pub trait Error: std::error::Error {
     /// A clarifying message to help aid someone in how to fix the message.
     /// 
     /// If there is none to add, this can be set to `None`.
-    fn help(&self) -> Option<Cow<str>>;
+    fn help(&self) -> Option<Cow<'_, str>>;
 }
 
 /// The possible source ranges for an error. 

@@ -470,9 +470,9 @@ pub struct SimFlags {
     /// 
     /// This flag allows us to configure between the two implementations:
     /// - **virtual** (`false`): On execution of one of these interrupts, the simulator breaks
-    ///     and prints its own error.
+    ///   and prints its own error.
     /// - **real** (`true`): On execution of one of these interrupts, the simulator delegates
-    ///     the error to the machine's OS and continues through the OS.
+    ///   the error to the machine's OS and continues through the OS.
     /// 
     /// Activating real traps is useful for maintaining integrity to the LC-3 ISA, whereas
     /// virtual HALT preserves the state of the machine prior to calling the interrupt routines

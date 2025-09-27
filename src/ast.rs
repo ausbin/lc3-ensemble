@@ -184,9 +184,9 @@ impl<const N: u32> std::fmt::Display for ImmOrReg<N> {
 /// ## Examples
 /// 
 /// - `Offset<i16, 5>`  is used to represent `ADD`/`AND`'s imm5 operand. 
-///     See [`IOffset`] for more examples of its use.
+///   See [`IOffset`] for more examples of its use.
 /// - `Offset<u16, 8>` is used to represent the `trapvect8` operand of the `TRAP` instruction.
-///     See [`TrapVect8`] for more examples of its use.
+///   See [`TrapVect8`] for more examples of its use.
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
 pub struct Offset<OFF, const N: u32>(OFF);
 
@@ -234,7 +234,7 @@ impl std::fmt::Display for OffsetNewErr {
 }
 impl std::error::Error for OffsetNewErr {}
 impl crate::err::Error for OffsetNewErr {
-    fn help(&self) -> Option<std::borrow::Cow<str>> {
+    fn help(&self) -> Option<std::borrow::Cow<'_, str>> {
         use std::borrow::Cow;
 
         let error = match self {

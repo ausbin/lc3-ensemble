@@ -70,7 +70,7 @@ pub struct TimerDevice {
 impl TimerDevice {
     /// Creates a new timer device.
     /// - `seed`: Sets the seed for the timer's RNG. This can be `None` 
-    ///     if RNG does not need to be deterministic or if range can only be exactly one value.
+    ///   if RNG does not need to be deterministic or if range can only be exactly one value.
     /// - `range`: Sets the range of possible number of instructions before interrupt trigger.
     /// - `vect` and `priority`: Initializes the interrupt vector and priority values.
     pub fn new(seed: Option<u64>, range: impl RangeBounds<u32>, vect: u8, priority: u8) -> Self {
