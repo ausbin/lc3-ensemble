@@ -517,6 +517,7 @@ impl Default for SimFlags {
 
 const USER_START: u16 = 0x3000;
 const IO_START: u16 = 0xFE00;
+const SAVED_SP_ADDR: u16 = 0xFFFA;
 const PSR_ADDR: u16 = 0xFFFC;
 const MCR_ADDR: u16 = 0xFFFE;
 
@@ -538,6 +539,7 @@ pub enum InternalRegister {
 impl InternalRegister {
     fn default_mmap() -> HashMap<u16, Self> {
         HashMap::from_iter([
+            (SAVED_SP_ADDR, Self::SavedSP),
             (PSR_ADDR, Self::PSR),
             (MCR_ADDR, Self::MCR),
         ])
